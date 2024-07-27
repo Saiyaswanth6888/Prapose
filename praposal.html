@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('my1.jpg') no-repeat center center/cover;
+            font-family: 'Raleway', sans-serif;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .container {
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-family: 'Pacifico', cursive;
+            animation: colorChange 3s infinite alternate;
+        }
+
+        @keyframes colorChange {
+            from {
+                color: #ff7e5f;
+            }
+            to {
+                color: #feb47b;
+            }
+        }
+
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 50px;
+            background-color: #ff7e5f;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #feb47b;
+            transform: scale(1.1);
+        }
+
+        button:active {
+            transform: scale(1.05);
+        }
+
+        .hearts {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 1;
+        }
+
+        .heart {
+            width: 30px;
+            height: 30px;
+            background-color: #ff6b81;
+            position: absolute;
+            transform: rotate(45deg);
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            width: 30px;
+            height: 30px;
+            background-color: #ff6b81;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart::before {
+            top: -15px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -15px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-100px) rotate(45deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+        }
+
+        .heart:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .heart:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        .popup-heart {
+            width: 50px;
+            height: 50px;
+            background-color: #ff6b81;
+            position: absolute;
+            transform: rotate(45deg);
+            display: none;
+            z-index: 3;
+            animation: popup 0.5s ease-out;
+        }
+
+        .popup-heart::before,
+        .popup-heart::after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            background-color: #ff6b81;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .popup-heart::before {
+            top: -25px;
+            left: 0;
+        }
+
+        .popup-heart::after {
+            left: -25px;
+            top: 0;
+        }
+
+        @keyframes popup {
+            0% {
+                transform: scale(0) rotate(45deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotate(45deg);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>I Love You</h1>
+        <p>You are my everything, and I want to spend the rest of my life making you happy.</p>
+        <button onclick="showHeart()">I Love You</button>
+    </div>
+    <div class="hearts">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+    <div id="popup-heart" class="popup-heart"></div>
+    <script>
+        function showHeart() {
+            const heart = document.getElementById('popup-heart');
+            heart.style.display = 'block';
+            heart.style.left = (window.innerWidth / 2 - 25) + 'px';
+            heart.style.top = (window.innerHeight / 2 - 25) + 'px';
+            setTimeout(() => {
+                heart.style.display = 'none';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
